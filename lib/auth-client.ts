@@ -6,12 +6,12 @@ import {
   multiSessionClient,
   oidcClient,
   passkeyClient,
-  twoFactorClient
+  twoFactorClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 import { toast } from "sonner";
 export const authClient = createAuthClient({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://hashmap-codesprint.vercel.app",
   plugins: [
     twoFactorClient({
       onTwoFactorRedirect() {
@@ -28,14 +28,10 @@ export const authClient = createAuthClient({
   ],
   fetchOptions: {
     onError(e) {
-      if (e.error.status === 429) toast.error("Too many requests. Please try again later.");
+      if (e.error.status === 429)
+        toast.error("Too many requests. Please try again later.");
     },
   },
-})
+});
 
-export const {
-  signUp,
-  signIn,
-  signOut,
-  useSession,
-} = authClient;
+export const { signUp, signIn, signOut, useSession } = authClient;
