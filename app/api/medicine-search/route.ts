@@ -5,7 +5,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API || "");
 // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-001" });
 // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite-preview-02-05" });
 const model = genAI.getGenerativeModel({

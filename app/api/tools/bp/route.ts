@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-async function POSt(req: NextRequest) {
+export async function POSt(req: NextRequest) {
   const { sys, dia } = await req.json();
 
   if (sys > 120 || dia > 80) {

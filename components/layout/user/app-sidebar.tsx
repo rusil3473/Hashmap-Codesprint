@@ -52,64 +52,64 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: User2Icon,
       isActive: true,
       items: [
         {
           title: "Exercises",
-          url: "#",
+          url: "/tools/exercises",
         },
         {
           title: "Sleep Tracker",
-          url: "#",
+          url: "/sleep-tracker",
         },
         {
           title: "Health Tools",
-          url: "#",
+          url: "/tools",
         },
       ],
     },
     {
       title: "Symptom Search",
-      url: "#",
+      url: "/tools/symptom-search",
       icon: Bot,
     },
     {
       title: "Medicine Finder",
-      url: "#",
+      url: "/tools/medicine-finder",
       icon: BookOpen,
     },
     {
       title: "Disease Glossary",
-      url: "#",
+      url: "/diseases",
       icon: ScanSearch,
     },
     {
       title: "Personalized AI",
-      url: "#",
+      url: "/ai",
       icon: FileUserIcon,
     },
     {
       title: "Smart Watch Dashboard",
-      url: "#",
+      url: "/watch",
       icon: Newspaper
     }
   ],
   projects: [
     {
       name: "Web Map",
-      url: "#",
+      url: "/web-map",
       icon: Frame,
     },
     {
       name: "Statistics",
-      url: "#",
+      url: "/stats",
       icon: PieChart,
     },
     {
-      name: "Glossary",
-      url: "#",
+      name: "Glossary & FAQs",
+      url: "/glossary",
       icon: Map,
     },
   ],

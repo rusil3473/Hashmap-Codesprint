@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from 'next/headers'
 
 
-async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const { weight, height } = await req.json();
   const cookieStore = await cookies()
   const value = weight / (height * height);
