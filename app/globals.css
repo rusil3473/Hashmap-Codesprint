@@ -3,6 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-inter: 'Inter', sans-serif;
+  --font-sans: 'Geist', 'Geist Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --breakpoint-xs: 30rem;
+  --breakpoint-slg: 991px; 
+  --breakpoint-emd: 768px;
+  --breakpoint-wxl: 1280px;
+  --container-7-5xl: 90rem;
+  --container-8xl: 1440px;
+  --text-tiny: 0.625rem; 
+  --color-informative: hsl(var(--informative));
+  --color-informative-foreground: hsl(var(--informative-foreground));
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -119,4 +134,37 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.no-visible-scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+@layer components {
+  .shadow-heading {
+    @apply bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text leading-none tracking-tighter text-transparent text-balance;
+  }
+  .flex-center-2 {
+    @apply flex items-center gap-2;
+  }
+  .flex-center-1 {
+    @apply flex items-center gap-1;
+  }
+}
+
+.small-caps { font-variant: small-caps; }
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

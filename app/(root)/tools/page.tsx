@@ -1,51 +1,25 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
-
-export function ProfileForm() {
-  // ...
-
+const page = () => {
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+    <div className="flex justify-center items-center ">
+      <div className="flex flex-col gap-4 justify-center items-center border rounded w-fit bg-[rgb(250,250,250)] p-5">
+        <h1 className="text-2xl font-bold my-5"> BMI Counter</h1>
+        <form className="flex flex-col gap-4 justify-center items-center">
+          <label className="">
+            Weight:
+            <input type="number" name="Weignt" placeholder="Enter your weight in KG" className="border border-black rounded p-1" />
+          </label>
+          <label>
+            Heignt:
+            <input type="number" name="Hight" placeholder="Enter your height in m" className="border border-black rounded p-1" />
+          </label>
+
+          <input type="submit" value="Submit" className="bg-black rounded cursur-pointer w-20 text-white h-10" />
+        </form>
+      </div>
+    </div>
   )
 }
+
+export default page;
