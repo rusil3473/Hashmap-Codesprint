@@ -18,11 +18,39 @@ const up = [
 
 const lo = [
   {
-    id: 1
+    id: 1,
+    img: "https://images.squarespace-cdn.com/content/v1/5cf93199c24c0a000107ec5b/fc0d07d2-2f97-485c-9c7f-4ee883f9abb2/Goblet+Squat.png?format=2500w"
+  },
+  {
+    id: 2,
+    img: "https://images.squarespace-cdn.com/content/v1/5cf93199c24c0a000107ec5b/fc0d07d2-2f97-485c-9c7f-4ee883f9abb2/Goblet+Squat.png?format=2500w"
+  },
+  {
+    id: 3,
+    img: "https://images.squarespace-cdn.com/content/v1/5cf93199c24c0a000107ec5b/fc0d07d2-2f97-485c-9c7f-4ee883f9abb2/Goblet+Squat.png?format=2500w"
   }
 ]
 
+const yo = [
+  {
+    id: 1,
+    img: "https://a.storyblok.com/f/97382/2000x1500/4c15e1224b/cover-benefits-of-yoga-and-meditation.png/m/1168x947/smart/filters:quality(65)"
+  },
+  {
+    id: 2,
+    img: "https://a.storyblok.com/f/97382/2000x1500/4c15e1224b/cover-benefits-of-yoga-and-meditation.png/m/1168x947/smart/filters:quality(65)"
+  },
+  {
+    id: 3,
+    img: "https://a.storyblok.com/f/97382/2000x1500/4c15e1224b/cover-benefits-of-yoga-and-meditation.png/m/1168x947/smart/filters:quality(65)"
+  },
+]
+
 const page = () => {
+
+
+
+
   return (
     <section className="relative overflow-x-hidden flex flex-col font-inter min-h-svh">
       <div className="w-full px-4 py-8 lg:px-8 lg:py-10">
@@ -34,11 +62,11 @@ const page = () => {
       <div>
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList>
-            <TabsTrigger value="account">Upper Body</TabsTrigger>
-            <TabsTrigger value="password">Lower Body</TabsTrigger>
-            <TabsTrigger value="password">Youga</TabsTrigger>
+            <TabsTrigger value="Upper Body">Upper Body</TabsTrigger>
+            <TabsTrigger value="Lower Body">Lower Body</TabsTrigger>
+            <TabsTrigger value="Yoga">Yoga</TabsTrigger>
           </TabsList>
-          <TabsContent value="account">
+          <TabsContent value="Upper Body">
             <div className='flex items-center'>
               {up.map((item) => (
                 <div className='bg-[rgb(250,250,250)] p-2 rounded flex ' key={item.id}>
@@ -50,8 +78,18 @@ const page = () => {
               ))}
             </div>
           </TabsContent>
-          <TabsContent value="password"><div className='flex items-center'>
-            {up.map((item) => (
+          <TabsContent value="Lower Body"><div className='flex items-center'>
+            {lo.map((item) => (
+              <div className='bg-[rgb(250,250,250)] p-2 rounded flex ' key={item.id}>
+                <img
+                  src={item.img}
+                  alt=''
+                  className=" rounded-lg object-fit " />
+              </div>
+            ))}
+          </div></TabsContent>
+          <TabsContent value="Yoga"><div className='flex items-center'>
+            {yo.map((item) => (
               <div className='bg-[rgb(250,250,250)] p-2 rounded flex ' key={item.id}>
                 <img
                   src={item.img}
