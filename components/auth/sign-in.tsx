@@ -13,21 +13,35 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState, useTransition, useEffect } from "react";
-import { ExternalLinkIcon, EyeIcon, EyeOffIcon, KeyIcon, Loader2, MailIcon, UserPlus2Icon } from "lucide-react";
+import {
+  ExternalLinkIcon,
+  EyeIcon,
+  EyeOffIcon,
+  KeyIcon,
+  Loader2,
+  MailIcon,
+  UserPlus2Icon,
+} from "lucide-react";
 import { authClient as client, signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { getCallbackURL } from "@/lib/shared";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [loading, startTransition] = useTransition();
-  const [loadingAction, setLoadingAction] = useState<null | "email" | "passkey" | "social">(null);
+  const [loadingAction, setLoadingAction] = useState<
+    null | "email" | "passkey" | "social"
+  >(null);
   const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
   const params = useSearchParams();
@@ -39,16 +53,21 @@ export default function SignIn() {
 
     // Guard against older browsers and server-side rendering
     if (typeof window === "undefined") return;
-    if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable)
+    if (
+      !window.PublicKeyCredential ||
+      !PublicKeyCredential.isConditionalMediationAvailable
+    )
       return;
 
     try {
-      const available = PublicKeyCredential.isConditionalMediationAvailable && PublicKeyCredential.isConditionalMediationAvailable();
+      const available =
+        PublicKeyCredential.isConditionalMediationAvailable &&
+        PublicKeyCredential.isConditionalMediationAvailable();
       if (!available) return;
 
       signIn.passkey({ autoFill: true });
     } catch (e) {
-      console.debug("passkey conditional UI not available", e)
+      console.debug("passkey conditional UI not available", e);
     }
   }, [email]);
 
@@ -58,7 +77,7 @@ export default function SignIn() {
     </span>
   );
 
-  const toggleVisibility = () => setIsVisible((prevState) => !prevState)
+  const toggleVisibility = () => setIsVisible((prevState) => !prevState);
 
   return (
     <Card className="max-w-md bg-gradient-to-b from-neutral-100/50 to-white/30 dark:from-neutral-900/50 dark:to-neutral-900/30 backdrop-blur-lg border border-gray-200 dark:border-gray-700 shadow-lg">
@@ -66,15 +85,22 @@ export default function SignIn() {
         <CardTitle className="text-xl md:text-2xl">Welcome Back!</CardTitle>
         <CardDescription className="text-sm">
           <div className="leading-tight sm:text-balance">
-            Please sign in either via email, your google account or using a registered passkey.
+            Please sign in either via email, your google account or using a
+            registered passkey.
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="link" size="none" className="inline px-1">Need help?</Button>
+                <Button variant="link" size="none" className="inline px-1">
+                  Need help?
+                </Button>
               </PopoverTrigger>
               <PopoverContent className="w-xs text-sm">
-                If you are a doctor, contact your hospital or us to ensure you have a registered account first. For non-doctors, please sign up first if you don't have an account.
-                <br /><br />
-                Passkey will work only if you have previously registered a passkey with us on this device.
+                If you are a doctor, contact your hospital or us to ensure you
+                have a registered account first. For non-doctors, please sign up
+                first if you don't have an account.
+                <br />
+                <br />
+                Passkey will work only if you have previously registered a
+                passkey with us on this device.
               </PopoverContent>
             </Popover>
           </div>
@@ -141,16 +167,21 @@ export default function SignIn() {
               <Label htmlFor="remember">Remember me</Label>
             </div>
             <div className="flex items-center">
-              <Link href="/forgot-password" className="ml-auto inline-block text-sm underline">
+              <Link
+                href="/forgot-password"
+                className="ml-auto inline-block text-sm underline"
+              >
                 Forgot password?
               </Link>
             </div>
           </section>
           <section className="flex flex-col gap-2 mt-2">
-            <div className={cn(
-              "w-full gap-2 flex items-center",
-              "justify-between flex-col relative",
-            )}>
+            <div
+              className={cn(
+                "w-full gap-2 flex items-center",
+                "justify-between flex-col relative"
+              )}
+            >
               <Button
                 type="submit"
                 className="w-full flex items-center justify-center"
@@ -169,9 +200,11 @@ export default function SignIn() {
                           },
                           onError(ctx) {
                             setLoadingAction(null);
-                            toast.error(ctx?.error?.message || "Sign in failed");
+                            toast.error(
+                              ctx?.error?.message || "Sign in failed"
+                            );
                           },
-                        },
+                        }
                       );
                     } catch (err) {
                       setLoadingAction(null);
@@ -187,14 +220,18 @@ export default function SignIn() {
                 )}
                 <span>Login with Email</span>
 
-                {mounted && client.isLastUsedLoginMethod("email") && <LastUsedIndicator />}
+                {mounted && client.isLastUsedLoginMethod("email") && (
+                  <LastUsedIndicator />
+                )}
               </Button>
             </div>
             {/* Passkey sign-in button */}
-            <div className={cn(
-              "w-full gap-2 flex items-center",
-              "justify-between flex-col relative",
-            )}>
+            <div
+              className={cn(
+                "w-full gap-2 flex items-center",
+                "justify-between flex-col relative"
+              )}
+            >
               <Button
                 variant="outline"
                 className="w-full gap-2 flex items-center"
@@ -212,7 +249,9 @@ export default function SignIn() {
                         },
                         onError(ctx) {
                           setLoadingAction(null);
-                          toast.error(ctx?.error?.message || "Passkey sign-in failed");
+                          toast.error(
+                            ctx?.error?.message || "Passkey sign-in failed"
+                          );
                         },
                       },
                     });
@@ -234,7 +273,7 @@ export default function SignIn() {
             <div
               className={cn(
                 "w-full gap-2 flex items-center",
-                "justify-between flex-col relative",
+                "justify-between flex-col relative"
               )}
             >
               <Button
@@ -246,7 +285,7 @@ export default function SignIn() {
                   try {
                     await signIn.social({
                       provider: "google",
-                      callbackURL: "/dashboard",
+                      callbackURL: "/tools",
                     });
                     setLoadingAction(null);
                   } catch (err) {
@@ -283,17 +322,36 @@ export default function SignIn() {
                   </svg>
                 )}
                 <span>Login with Google</span>
-                {mounted && client.isLastUsedLoginMethod("google") && <LastUsedIndicator />}
+                {mounted && client.isLastUsedLoginMethod("google") && (
+                  <LastUsedIndicator />
+                )}
               </Button>
             </div>
           </section>
         </div>
-
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full flex-col text-center text-sm text-muted-foreground">
-          <div className="flex-center-1 justify-center">Facing Issues?{" "} <Link href={'/contact'} className="text-primary underline cursor-pointer">Contact us</Link> <ExternalLinkIcon className="size-3 inline" /></div>
-          <div className="flex-center-1 justify-center">Don't have an account?{" "} <Link href={'/sign-up'} className="text-primary underline cursor-pointer">Sign up</Link> <ExternalLinkIcon className="size-3 inline" /></div>
+          <div className="flex-center-1 justify-center">
+            Facing Issues?{" "}
+            <Link
+              href={"/contact"}
+              className="text-primary underline cursor-pointer"
+            >
+              Contact us
+            </Link>{" "}
+            <ExternalLinkIcon className="size-3 inline" />
+          </div>
+          <div className="flex-center-1 justify-center">
+            Don't have an account?{" "}
+            <Link
+              href={"/sign-up"}
+              className="text-primary underline cursor-pointer"
+            >
+              Sign up
+            </Link>{" "}
+            <ExternalLinkIcon className="size-3 inline" />
+          </div>
         </div>
       </CardFooter>
     </Card>
