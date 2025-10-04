@@ -77,7 +77,7 @@ const data = {
     },
     {
       title: "Medicine Finder",
-      url: "/tools/medicine-finder",
+      url: "/tools/medicine-search",
       icon: BookOpen,
     },
     {
